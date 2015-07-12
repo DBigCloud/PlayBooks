@@ -1,0 +1,11 @@
+- hosts: esxhosts
+  remote_user: root
+  tasks:
+  - name: Crear vSwitch01
+    command: esxcli network vswitch standard add -v vSwitch1
+  - name: Añadir interfaz vmnic2 al vSwitch01
+    command: esxcli network vswitch standard uplink add -u vmnic2 -v vSwitch1
+  - name: Añadir interfaz vmnic3 al vSwitch01
+    command: esxcli network vswitch standard uplink add -u vmnic3 -v vSwitch1
+  - name: Crear portgroup dbigcloud en vSwitch01
+    command: esxcli network vswitch standard portgroup add -p "dbigcloud" -v vSwitch1
